@@ -1,0 +1,25 @@
+.bodyWrap {
+  margin-left: var(--sidebar-width);
+  transition: margin 800ms;
+}
+
+.mainWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4xl);
+}
+
+.bg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  max-width: 1000px;
+  z-index: -1;
+}
+
+@media (max-width: 1200px) {
+  .bodyWrap {
+    margin-left: 0;
+  }
+}

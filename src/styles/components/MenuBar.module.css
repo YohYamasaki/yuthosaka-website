@@ -1,0 +1,123 @@
+.sidebar {
+  background-color: var(--surface-container);
+  padding: var(--size-3xl) var(--size-2xl);
+  border-bottom-right-radius: var(--br-l);
+  border-top-right-radius: var(--br-l);
+  border-right-style: dashed;
+  border-color: var(--primary);
+  border-width: 2px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--sidebar-width);
+  transition: left 800ms ease-in-out;
+  z-index: 2;
+}
+
+.sidebarBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 200ms;
+}
+
+.sidebarBg.open {
+  background-color: var(--original-neutral-transparent);
+  z-index: 1;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-family: "AveriaSerifLibre", serif;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--on-primary-container);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarToggleButton {
+  display: none;
+  background: transparent;
+  border: none;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 50px;
+  height: 32px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  z-index: 2;
+}
+
+.sidebarToggleButton span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: var(--primary-container);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.sidebarToggleButton span:nth-child(1) {
+  top: 0;
+}
+
+.sidebarToggleButton span:nth-child(2),
+.sidebarToggleButton span:nth-child(3) {
+  top: 15px;
+}
+
+.sidebarToggleButton span:nth-child(4) {
+  top: 30px;
+}
+
+.sidebarToggleButton.open span:nth-child(1) {
+  top: 18px;
+  width: 0;
+  left: 50%;
+}
+
+.sidebarToggleButton.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.sidebarToggleButton.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.sidebarToggleButton.open span:nth-child(4) {
+  top: 18px;
+  width: 0;
+  left: 50%;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    left: calc(-1 * var(--sidebar-width));
+  }
+
+  .sidebarToggleButton {
+    display: flex;
+  }
+}

@@ -1,0 +1,16 @@
+---
+import type { BaseHeadProps } from "../components/BaseHead.astro";
+import BaseSite from "../layouts/BaseSite.astro";
+import MainIntro from "../components/MainIntro.astro";
+import News from "../components/News.astro";
+
+const baseHeadProps: BaseHeadProps = {
+  title: "Blog",
+  description: "test",
+};
+---
+
+<BaseSite {...baseHeadProps}>
+  <MainIntro />
+  <News />
+</BaseSite>

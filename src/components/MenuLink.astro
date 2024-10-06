@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import s from "../styles/components/MenuLink.module.css";
+
+type Props = HTMLAttributes<"a">;
+
+const { href, ...props } = Astro.props;
+
+const { pathname } = Astro.url;
+const subpath = pathname.match(/[^\/]+/g);
+const isActive = href === pathname || href === "/" + subpath?.[0];
+---
+
+<a href={href} class:list={[s.link, { [s.active]: isActive }]} {...props}>
+  <slot />
+</a>

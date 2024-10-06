@@ -1,0 +1,28 @@
+---
+import s from "../styles/components/TabContainer.module.css";
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  title: string;
+  icon?: string;
+  size?: "small" | "large";
+};
+
+const { title, icon, size = "small" } = Astro.props;
+---
+
+<div class={s.tabContainer}>
+  <h3 class:list={[s.title, size == "small" ? s.title_small : s.title_large]}>
+    {icon && <Icon name={icon} />}
+    {title}
+  </h3>
+
+  <div
+    class:list={[
+      s.content,
+      size == "small" ? s.content_small : s.content_large,
+    ]}
+  >
+    <slot />
+  </div>
+</div>

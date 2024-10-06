@@ -1,0 +1,16 @@
+---
+import { getEntry } from "astro:content";
+const news = await getEntry("news", "news");
+const { Content } = await news.render();
+import { Icon } from "astro-icon/components";
+import s from "../styles/components/News.module.css";
+---
+
+<div class={s.news}>
+  <h3 class={s.newsTitle}>
+    <Icon name="mdi:newspaper-variant-multiple" />News
+  </h3>
+  <div class={s.newsContent}>
+    <Content />
+  </div>
+</div>

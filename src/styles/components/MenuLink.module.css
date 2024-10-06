@@ -1,0 +1,17 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  font-family: "AveriaSerifLibre", serif;
+  padding: 8px 16px;
+  border-radius: var(--br-s);
+  transition: background-color 200ms;
+}
+
+.link:hover {
+  background-color: var(--surface-dim);
+}
+
+.link.active {
+  font-weight: bolder;
+  background-color: var(--tertiary-container-light);
+}

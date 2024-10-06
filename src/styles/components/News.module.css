@@ -1,0 +1,32 @@
+.news {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+}
+
+.newsTitle {
+  background-color: var(--tertiary-container);
+  border-radius: var(--br-l);
+  padding: 12px 64px;
+  color: var(--white);
+  font-family: "AveriaSerifLibre", serif;
+  font-size: var(--text-xl);
+  font-weight: 400;
+  display: flex;
+  gap: 8px;
+}
+
+.newsTitle svg {
+  position: relative;
+  top: 4px;
+}
+
+.newsContent {
+  border-radius: var(--br-l);
+  border: 1px solid var(--on-surface);
+  padding: var(--size-base) var(--size-l);
+  background-color: var(--surface-transparent);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}

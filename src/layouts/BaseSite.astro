@@ -1,0 +1,32 @@
+---
+import s from "../styles/page/index.module.css";
+
+import BaseHead from "../components/BaseHead.astro";
+import MenuBar from "../components/MenuBar.astro";
+import type { BaseHeadProps } from "../components/BaseHead.astro";
+import bg from "../assets/images/bg.svg";
+import Footer from "../components/Footer.astro";
+
+type Props = BaseHeadProps;
+
+const baseHeadProps = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...baseHeadProps} />
+  </head>
+  <body>
+    <div id="body-wrap" class={s.bodyWrap}>
+      <MenuBar />
+      <main>
+        <div class={s.mainWrap}>
+          <slot />
+          <Footer />
+        </div>
+      </main>
+    </div>
+    <img class={s.bg} src={bg.src} alt="" />
+  </body>
+</html>
