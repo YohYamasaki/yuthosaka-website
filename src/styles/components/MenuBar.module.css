@@ -22,6 +22,7 @@
   width: 100vw;
   height: 100vh;
   transition: all 200ms;
+  pointer-events: none;
 }
 
 .sidebarBg.open {

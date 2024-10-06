@@ -5,9 +5,11 @@
   padding: 8px 16px;
   border-radius: var(--br-s);
   transition: background-color 200ms;
+  color: var(--on-surface);
 }
 
 .link:hover {
+  opacity: 1;
   background-color: var(--surface-dim);
 }
 

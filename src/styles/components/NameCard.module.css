@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.cvIntro {
+  align-items: stretch;
+}
+
 .introMainImg {
   flex: 1;
   width: 40%;
@@ -29,6 +33,10 @@
   padding: var(--size-l) var(--size-xl);
   border-radius: var(--br-l);
   background-color: var(--surface);
+}
+
+.cvIntro .introNameWrap {
+  height: 100%;
 }
 
 .introTabWrap {

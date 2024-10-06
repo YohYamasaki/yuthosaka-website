@@ -3,26 +3,92 @@ import s from "../styles/components/TabContainer.module.css";
 import { Icon } from "astro-icon/components";
 
 type Props = {
+  id: string;
   title: string;
   icon?: string;
   size?: "small" | "large";
+  displayShowMore?: boolean;
 };
 
-const { title, icon, size = "small" } = Astro.props;
+const {
+  id,
+  title,
+  icon,
+  size = "small",
+  displayShowMore = false,
+} = Astro.props;
 ---
 
-<div class={s.tabContainer}>
-  <h3 class:list={[s.title, size == "small" ? s.title_small : s.title_large]}>
+<astro-tab-container
+  id={id}
+  data-display-show-more={`${displayShowMore}`}
+  class={s.tabContainer}
+>
+  <h3
+    class:list={[
+      s.tabTitle,
+      size == "small" ? s.tabTitle_small : s.tabTitle_large,
+    ]}
+  >
     {icon && <Icon name={icon} />}
     {title}
   </h3>
 
   <div
     class:list={[
-      s.content,
-      size == "small" ? s.content_small : s.content_large,
+      s.tabContent,
+      s.tabContent_hidden,
+      size == "small" ? s.tabContent_small : s.tabContent_large,
     ]}
   >
-    <slot />
+    <div class="tab-content">
+      <slot />
+    </div>
   </div>
-</div>
+
+  {displayShowMore && <button class={s.showMore}>Show more</button>}
+</astro-tab-container>
+
+<script>
+  const DEFAULT_SHOW_NUM = 5;
+  const SHOW_SPAN = 5;
+  let displayNum = 5;
+
+  /*
+   * If there is an ordered list or unordered list in the content, hide elements more than defaultShowNum
+   * @param {string} id - id for selector
+   * @param {number} showNum - item number to show
+   */
+  function showContent(
+    listItemEls: NodeListOf<HTMLLIElement>,
+    showNum: number,
+  ) {
+    listItemEls.forEach((el, i) => {
+      el.style.display = "list-item";
+      if (i >= showNum) el.style.display = "none";
+    });
+  }
+
+  class AstroTabContainer extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.displayShowMore !== "true") return;
+      // Read the message from the data attribute.
+      const showButtonEl = this.querySelector("button");
+      const tabContentEl = document.querySelector(`#${this.id} .tab-content`);
+      const listEl = tabContentEl?.querySelector("ol, ul");
+      const listItemEls = listEl?.querySelectorAll("li");
+      if (!listItemEls) return;
+
+      showContent(listItemEls, DEFAULT_SHOW_NUM);
+      const maxItems = listItemEls?.length;
+      showButtonEl?.addEventListener("click", () => {
+        displayNum += SHOW_SPAN;
+        showContent(listItemEls, displayNum);
+        if (maxItems && displayNum >= maxItems)
+          showButtonEl.style.display = "none";
+      });
+    }
+  }
+
+  customElements.define("astro-tab-container", AstroTabContainer);
+</script>

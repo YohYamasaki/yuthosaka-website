@@ -1,10 +1,9 @@
 ---
 import DynamicPicture from "./common/DynamicPicture.astro";
 import s from "../styles/components/NameCard.module.css";
-import TabContainer from "./TabContainer.astro";
 ---
 
-<div class={s.intro}>
+<div class:list={[s.intro, s.cvIntro]}>
   <div class={s.introMainImg}>
     <DynamicPicture src="/src/assets/images/yutohosaka.jpg" alt="Yuto Hosaka" />
   </div>
@@ -17,16 +16,6 @@ import TabContainer from "./TabContainer.astro";
         My interests are soft active matter and low Reynolds number
         hydrodynamics, especially chiral active fluids.
       </p>
-    </div>
-
-    <div class={s.introTabWrap}>
-      <TabContainer id="intro-links" title="Links" icon="mdi:link">
-        <div>Publications, Google Scholar, arXiv, ORCiD, researchmap</div>
-      </TabContainer>
-
-      <TabContainer id="intro-contact" title="Contact" icon="mdi:email-outline">
-        <div>yuto.hosaka(・∀・)ds.mpg.de [(・∀・)=@]</div>
-      </TabContainer>
     </div>
   </div>
 </div>

@@ -12,7 +12,7 @@
   --tertiary-container-light: #c5ecce;
 
   --surface: #fff9ee;
-  --surface-transparent: #fff9ee99;
+  --surface-transparent: #fff9eeaa;
   --surface-dim: #e0d9cc;
   --surface-container: #f4eddf;
   --on-surface: #1e1b13;
@@ -113,9 +113,19 @@ b {
   font-weight: 700;
 }
 a {
-  color: var(--on-primary-container);
+  color: var(--primary);
+  transition: opacity 0.2s;
+}
+a:hover {
+  opacity: 0.7;
 }
 img {
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 568px) {
+  main {
+    padding-inline: 16px;
+  }
 }

@@ -14,3 +14,11 @@ const blog = defineCollection({
 });
 
 export const collections = { blog };
+
+export type GeneralContent = "research" | "publications" | "links";
+
+export const GENERAL_CONTENTS: GeneralContent[] = [
+  "research",
+  "publications",
+  "links",
+];

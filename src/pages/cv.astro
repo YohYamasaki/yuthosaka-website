@@ -1,0 +1,34 @@
+---
+import type { BaseHeadProps } from "../components/BaseHead.astro";
+import BaseSite from "../layouts/BaseSite.astro";
+import News from "../components/News.astro";
+import CvIntro from "../components/CvIntro.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import TabContainer from "../components/TabContainer.astro";
+
+const baseHeadProps: BaseHeadProps = {
+  title: "Blog",
+  description: "test",
+};
+
+const cvContents: CollectionEntry<"cv">[] = await getCollection("cv");
+const cvData = await Promise.all(cvContents.map((c) => c.render()));
+
+cvData.sort(
+  (a, b) => a.remarkPluginFrontmatter.order - b.remarkPluginFrontmatter.order,
+);
+---
+
+<BaseSite {...baseHeadProps}>
+  <CvIntro />
+  {
+    cvData.map((data) => (
+      <TabContainer
+        id={data.remarkPluginFrontmatter.title}
+        title={data.remarkPluginFrontmatter.title}
+      >
+        <data.Content />
+      </TabContainer>
+    ))
+  }
+</BaseSite>
