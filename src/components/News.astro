@@ -1,9 +1,18 @@
 ---
-import { getEntry } from "astro:content";
-const news = await getEntry("news", "news");
-const { Content } = await news.render();
-import { Icon } from "astro-icon/components";
 import s from "../styles/components/News.module.css";
+
+import { getEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import type { Language } from "../i18n/ui";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const news = await getEntry("news", `${lang}/news`);
+const { Content } = await news.render();
 ---
 
 <div class={s.news}>

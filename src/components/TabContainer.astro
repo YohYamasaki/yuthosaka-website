@@ -2,13 +2,13 @@
 import s from "../styles/components/TabContainer.module.css";
 import { Icon } from "astro-icon/components";
 
-type Props = {
+interface Props {
   id: string;
   title: string;
   icon?: string;
   size?: "small" | "large";
   displayShowMore?: boolean;
-};
+}
 
 const {
   id,

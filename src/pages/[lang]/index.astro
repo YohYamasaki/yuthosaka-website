@@ -1,0 +1,17 @@
+---
+import BaseSite from "../../layouts/BaseSite.astro";
+import MainIntro from "../../components/MainIntro.astro";
+import News from "../../components/News.astro";
+import { langParams } from "../../i18n/ui";
+
+export async function getStaticPaths() {
+  return langParams;
+}
+
+const { lang } = Astro.params;
+---
+
+<BaseSite>
+  <MainIntro />
+  <News lang={lang} />
+</BaseSite>

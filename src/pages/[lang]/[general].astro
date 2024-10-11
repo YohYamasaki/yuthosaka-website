@@ -1,32 +1,37 @@
 ---
-import s from "../styles/components/TabContainer.module.css";
-
-import type { BaseHeadProps } from "../components/BaseHead.astro";
-import BaseSite from "../layouts/BaseSite.astro";
-import TabContainer from "../components/TabContainer.astro";
-import DynamicPicture from "../components/common/DynamicPicture.astro";
+import s from "../../styles/components/TabContainer.module.css";
+import { LANGUAGES, type Language } from "../../i18n/ui";
+import type { BaseHeadProps } from "../../components/BaseHead.astro";
+import BaseSite from "../../layouts/BaseSite.astro";
+import TabContainer from "../../components/TabContainer.astro";
+import DynamicPicture from "../../components/common/DynamicPicture.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import type { GeneralContent } from "../content/config";
-import { GENERAL_CONTENTS } from "../content/config";
-
-const baseHeadProps: BaseHeadProps = {
-  title: "Blog",
-  description: "test",
-};
+import type { GeneralContent } from "../../content/config";
+import { GENERAL_CONTENTS } from "../../content/config";
+import {
+  removeLangFromContentSlug,
+  capitalizeFirstLetter,
+} from "../../utils/urlUtils";
 
 export async function getStaticPaths() {
-  return GENERAL_CONTENTS.map((path) => ({
-    params: { general: path },
-    props: { target: path },
-  }));
+  return GENERAL_CONTENTS.flatMap((path) =>
+    Object.keys(LANGUAGES).map((lang) => ({
+      params: { lang: lang as Language, general: path },
+      props: { target: path },
+    })),
+  );
 }
 
+const { lang, general } = Astro.params;
 const { target } = Astro.props as {
   target: GeneralContent;
 };
 
-const collection: CollectionEntry<typeof target>[] =
-  await getCollection(target);
+// get collection only start with the current language
+const collection: CollectionEntry<typeof target>[] = await getCollection(
+  target,
+  ({ slug }) => slug.startsWith(lang),
+);
 
 const entryContents = await Promise.all(
   collection.map((entry) => entry.render()),
@@ -43,6 +48,10 @@ const hide = {
   publications: true,
   links: false,
 };
+
+const baseHeadProps: BaseHeadProps = {
+  title: capitalizeFirstLetter(general),
+};
 ---
 
 <BaseSite {...baseHeadProps}>
@@ -50,7 +59,7 @@ const hide = {
     entryContents.map((entry, i) => {
       return (
         <TabContainer
-          id={slugs[i]}
+          id={removeLangFromContentSlug(slugs[i])}
           title={entry.remarkPluginFrontmatter.title}
           size="large"
           displayShowMore={hide[target]}

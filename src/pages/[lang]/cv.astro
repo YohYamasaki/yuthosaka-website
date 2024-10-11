@@ -1,17 +1,25 @@
 ---
-import type { BaseHeadProps } from "../components/BaseHead.astro";
-import BaseSite from "../layouts/BaseSite.astro";
-import News from "../components/News.astro";
-import CvIntro from "../components/CvIntro.astro";
+import type { BaseHeadProps } from "../../components/BaseHead.astro";
+import BaseSite from "../../layouts/BaseSite.astro";
+import CvIntro from "../../components/CvIntro.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import TabContainer from "../components/TabContainer.astro";
+import TabContainer from "../../components/TabContainer.astro";
+import { langParams } from "../../i18n/ui";
 
 const baseHeadProps: BaseHeadProps = {
-  title: "Blog",
-  description: "test",
+  title: "CV",
 };
 
-const cvContents: CollectionEntry<"cv">[] = await getCollection("cv");
+export async function getStaticPaths() {
+  return langParams;
+}
+
+const { lang } = Astro.params;
+
+const cvContents: CollectionEntry<"cv">[] = await getCollection("cv", (entry) =>
+  entry.id.startsWith(lang),
+);
+
 const cvData = await Promise.all(cvContents.map((c) => c.render()));
 
 cvData.sort(

@@ -1,0 +1,44 @@
+---
+import HeaderLink from "./MenuLink.astro";
+import s from "../styles/components/SideMenu.module.css";
+import Link from "./common/Link.astro";
+---
+
+<nav id="menu" class:list={[s.sideMenu]}>
+  <div>
+    <h2><Link class={s.title} href="/">Yuto Hosaka</Link></h2>
+    <div class={s.links}>
+      <HeaderLink href="/research">Research</HeaderLink>
+      <HeaderLink href="/cv">CV</HeaderLink>
+      <HeaderLink href="/publications">Publications</HeaderLink>
+      <HeaderLink href="/links">Links</HeaderLink>
+    </div>
+  </div>
+  <div class={s.langSelector}>
+    <a href="/ja">Japanese</a>
+    <a href="/en">English</a>
+  </div>
+</nav>
+
+<div id="menu-bg" class={s.sideMenuBg}></div>
+
+<button id="menu-toggle" class={s.sideMenuToggleButton}>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<script>
+  import s from "../styles/components/SideMenu.module.css";
+
+  const menuEl = document.getElementById("menu");
+  const menuBgEl = document.getElementById("menu-bg");
+  const menuToggleEl = document.getElementById("menu-toggle");
+
+  menuToggleEl?.addEventListener("click", () => {
+    menuEl?.classList.toggle(s.open);
+    menuBgEl?.classList.toggle(s.open);
+    menuToggleEl?.classList.toggle(s.open);
+  });
+</script>
