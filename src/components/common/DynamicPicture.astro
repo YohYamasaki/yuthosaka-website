@@ -1,6 +1,6 @@
 ---
+import { ALL_IMAGES } from "../../utils/constants";
 import { Picture } from "astro:assets";
-import type { LocalImageProps } from "astro:assets";
 
 type Props = {
   src: string;
@@ -8,16 +8,13 @@ type Props = {
 };
 
 const { src, alt, ...rest } = Astro.props;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/images/**/*.{jpeg,jpg,png,gif}",
-);
 
-if (!images[src])
+if (!ALL_IMAGES[src])
   throw new Error(
     `"${src}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`,
   );
 
-const image = images[src]();
+const image = ALL_IMAGES[src]();
 ---
 
-<Picture src={image} formats={["avif", "webp"]} alt={alt} />
+<Picture src={image} formats={["avif", "webp"]} alt={alt} {...rest} />

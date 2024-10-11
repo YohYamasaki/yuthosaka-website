@@ -42,16 +42,16 @@
   --size-l: clamp(1rem, 0.652rem + 1.739vw, 2rem);
   --size-m: clamp(1.2rem, 1.061rem + 0.696vw, 1.8rem);
   --size-base: clamp(1rem, 0.861rem + 0.696vw, 1.4rem);
-  --size-s: clamp(0.8rem, 0.73rem + 0.348vw, 1rem);
+  --size-s: clamp(0.9rem, 0.73rem + 0.348vw, 1rem);
 
-  /* Others */
-  --br-2xl: 96px;
-  --br-xl: 64px;
-  --br-l: 32px;
-  --br-base: 24px;
-  --br-s: 16px;
+  /* Border radius */
+  --br-2xl: 48px;
+  --br-xl: 32px;
+  --br-l: 16px;
+  --br-base: 12px;
+  --br-s: 8px;
 
-  --sidebar-width: 340px;
+  --sideMenu-width: 340px;
 }
 
 @font-face {
@@ -82,7 +82,8 @@ body {
 main {
   max-width: 1400px;
   margin: auto;
-  padding: 3em;
+  padding: 4rem;
+  padding-inline: 16px;
 }
 h1,
 h2,
@@ -123,9 +124,25 @@ img {
   width: 100%;
   height: auto;
 }
+ul,
+ol {
+  padding-left: var(--size-xl);
+}
+li {
+  margin-bottom: var(--size-s);
+}
 
-@media (max-width: 568px) {
+@media (min-width: 568px) {
+  :root {
+    /* Border radius */
+    --br-2xl: 96px;
+    --br-xl: 64px;
+    --br-l: 32px;
+    --br-base: 24px;
+    --br-s: 16px;
+  }
+
   main {
-    padding-inline: 16px;
+    padding-inline: 3rem;
   }
 }

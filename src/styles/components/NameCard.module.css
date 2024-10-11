@@ -1,12 +1,13 @@
 .intro {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--size-xl);
-  align-items: start;
   width: 100%;
 }
 
 .cvIntro {
-  align-items: stretch;
+  align-items: center;
 }
 
 .introMainImg {
@@ -56,4 +57,15 @@
 
 .introText {
   font-family: "AveriaSerifLibre", serif;
+}
+
+@media (min-width: 768px) {
+  .intro {
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .cvIntro {
+    align-items: stretch;
+  }
 }

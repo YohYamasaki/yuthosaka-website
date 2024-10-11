@@ -12,6 +12,7 @@
   display: inline-flex;
   gap: 8px;
   margin-bottom: 0;
+  max-width: 80%;
 }
 
 .tabTitle svg {
@@ -24,7 +25,7 @@
   border-top-right-radius: var(--br-base);
   background-color: var(--original-primary);
   font-size: var(--text-l);
-  padding: var(--size-s) var(--size-l);
+  padding: 12px var(--size-l);
 }
 
 .tabTitle_small {
@@ -78,8 +79,9 @@
   opacity: 0.7;
 }
 
-@media (max-width: 568px) {
-  .tabTitle {
-    max-width: 80%;
+@media (min-width: 568px) {
+  .tabTitle_large {
+    max-width: 100%;
+    padding: var(--size-s) var(--size-l);
   }
 }

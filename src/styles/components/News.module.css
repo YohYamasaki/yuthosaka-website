@@ -25,8 +25,12 @@
 .newsContent {
   border-radius: var(--br-l);
   border: 1px solid var(--on-surface);
-  padding: var(--size-base) var(--size-l);
+  padding: var(--size-base) var(--size-xl);
   background-color: var(--surface-transparent);
   backdrop-filter: blur(10px);
   width: 100%;
+}
+
+.newsContent ul {
+  padding-left: var(--size-l);
 }

@@ -1,6 +1,6 @@
 .bodyWrap {
-  margin-left: var(--sidebar-width);
   transition: margin 800ms;
+  margin-left: 0;
 }
 
 .mainWrap {
@@ -13,13 +13,17 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 60%;
+  width: 80%;
   max-width: 1000px;
   z-index: -1;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
   .bodyWrap {
-    margin-left: 0;
+    margin-left: var(--sideMenu-width);
+  }
+
+  .bg {
+    width: 60%;
   }
 }

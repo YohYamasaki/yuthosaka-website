@@ -1,6 +1,9 @@
-.sidebar {
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--surface-container);
-  padding: var(--size-3xl) var(--size-2xl);
+  padding: 4rem var(--size-2xl) var(--size-3xl);
   border-bottom-right-radius: var(--br-l);
   border-top-right-radius: var(--br-l);
   border-right-style: dashed;
@@ -10,12 +13,12 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: var(--sidebar-width);
+  width: var(--sideMenu-width);
   transition: left 800ms ease-in-out;
   z-index: 2;
 }
 
-.sidebarBg {
+.sideMenuBg {
   position: fixed;
   top: 0;
   left: 0;
@@ -25,12 +28,12 @@
   pointer-events: none;
 }
 
-.sidebarBg.open {
+.sideMenuBg.open {
   background-color: var(--original-neutral-transparent);
   z-index: 1;
 }
 
-.sidebar.open {
+.sideMenu.open {
   left: 0;
 }
 
@@ -47,7 +50,7 @@
   flex-direction: column;
 }
 
-.sidebarToggleButton {
+.sideMenuToggleButton {
   display: none;
   background: transparent;
   border: none;
@@ -57,17 +60,17 @@
   position: fixed;
   top: 16px;
   left: 16px;
-  width: 50px;
+  width: 40px;
   height: 32px;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
   z-index: 2;
 }
 
-.sidebarToggleButton span {
+.sideMenuToggleButton span {
   display: block;
   position: absolute;
-  height: 4px;
+  height: 3px;
   width: 100%;
   background: var(--primary-container);
   border-radius: 9px;
@@ -80,45 +83,56 @@
   transition: 0.25s ease-in-out;
 }
 
-.sidebarToggleButton span:nth-child(1) {
+.sideMenuToggleButton span:nth-child(1) {
   top: 0;
 }
 
-.sidebarToggleButton span:nth-child(2),
-.sidebarToggleButton span:nth-child(3) {
-  top: 15px;
+.sideMenuToggleButton span:nth-child(2),
+.sideMenuToggleButton span:nth-child(3) {
+  top: 12px;
 }
 
-.sidebarToggleButton span:nth-child(4) {
-  top: 30px;
+.sideMenuToggleButton span:nth-child(4) {
+  top: 24px;
 }
 
-.sidebarToggleButton.open span:nth-child(1) {
+.sideMenuToggleButton.open span {
+  height: 4px;
+}
+
+.sideMenuToggleButton.open span:nth-child(1) {
   top: 18px;
   width: 0;
   left: 50%;
 }
 
-.sidebarToggleButton.open span:nth-child(2) {
+.sideMenuToggleButton.open span:nth-child(2) {
   transform: rotate(45deg);
 }
 
-.sidebarToggleButton.open span:nth-child(3) {
+.sideMenuToggleButton.open span:nth-child(3) {
   transform: rotate(-45deg);
 }
 
-.sidebarToggleButton.open span:nth-child(4) {
+.sideMenuToggleButton.open span:nth-child(4) {
   top: 18px;
   width: 0;
   left: 50%;
 }
 
+.langSelector {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-s);
+  font-size: var(--text-base);
+}
+
 @media (max-width: 1200px) {
-  .sidebar {
-    left: calc(-1 * var(--sidebar-width));
+  .sideMenu {
+    left: calc(-1 * var(--sideMenu-width));
   }
 
-  .sidebarToggleButton {
+  .sideMenuToggleButton {
     display: flex;
   }
 }
