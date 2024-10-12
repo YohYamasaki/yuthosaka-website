@@ -4,8 +4,6 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "style:fix": "prettier -w .",
-    "style:check": "prettier -w .",
     "preinstall": "git config core.hooksPath githooks || true"
   },
   "dependencies": {

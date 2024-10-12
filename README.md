@@ -38,14 +38,14 @@ import the target image.
 <DynamicPicture src="/src/assets/images/example.jpg" alt="example alt text" />;
 ```
 
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command             | Action                                           |
-| :------------------ | :----------------------------------------------- |
-| `npm install`       | Installs dependencies                            |
-| `npm run dev`       | Starts local dev server at `localhost:4321`      |
-| `npm run build`     | Build your production site to `./dist/`          |
-| `npm run preview`   | Preview your build locally, before deploying     |
-| `npm run astro ...` | Run CLI commands like `astro add`, `astro check` |
+| Command               | Action                                           |
+| :-------------------- | :----------------------------------------------- |
+| `deno install`        | Installs dependencies                            |
+| `deno task dev`       | Starts local dev server at `localhost:4321`      |
+| `deno task build`     | Build your production site to `./dist/`          |
+| `deno task preview`   | Preview your build locally, before deploying     |
+| `deno task astro ...` | Run CLI commands like `astro add`, `astro check` |
