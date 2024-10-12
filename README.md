@@ -21,16 +21,21 @@ This site is made with Astro.
 
 #### Text-based contents
 
-Most of the text content, i.e. news, publications, is stored in the appropriate directory under `src/content/`. Within the category folders, English/Japanese content should be stored separately as `.mdx` files.
+Most of the text content, i.e. news, publications, is stored in the appropriate
+directory under `src/content/`. Within the category folders, English/Japanese
+content should be stored separately as `.mdx` files.
 
-Other short texts in the website should be stored in a `translations` object in `src/i18n/ui.ts` to ensure localization.
+Other short texts in the website should be stored in a `translations` object in
+`src/i18n/ui.ts` to ensure localization.
 
 #### Images
 
-All images should be placed inside `src/assets/images/` to be optimized by Astro. To display the images, use `DynamicPicture` component to dynamically import the target image.
+All images should be placed inside `src/assets/images/` to be optimized by
+Astro. To display the images, use `DynamicPicture` component to dynamically
+import the target image.
 
 ```typescript jsx
- <DynamicPicture src="/src/assets/images/example.jpg" alt="example alt text" />
+<DynamicPicture src="/src/assets/images/example.jpg" alt="example alt text" />;
 ```
 
 ## 🧞 Commands

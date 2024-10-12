@@ -16,8 +16,9 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-const cvContents: CollectionEntry<"cv">[] = await getCollection("cv", (entry) =>
-  entry.id.startsWith(lang),
+const cvContents: CollectionEntry<"cv">[] = await getCollection(
+  "cv",
+  (entry) => entry.id.startsWith(lang),
 );
 
 const cvData = await Promise.all(cvContents.map((c) => c.render()));

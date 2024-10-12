@@ -1,6 +1,6 @@
 ---
 import s from "../../styles/components/TabContainer.module.css";
-import { LANGUAGES, type Language } from "../../i18n/ui";
+import { type Language, LANGUAGES } from "../../i18n/ui";
 import type { BaseHeadProps } from "../../components/BaseHead.astro";
 import BaseSite from "../../layouts/BaseSite.astro";
 import TabContainer from "../../components/TabContainer.astro";
@@ -9,8 +9,8 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import type { GeneralContent } from "../../content/config";
 import { GENERAL_CONTENTS } from "../../content/config";
 import {
-  removeLangFromContentSlug,
   capitalizeFirstLetter,
+  removeLangFromContentSlug,
 } from "../../utils/urlUtils";
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
     Object.keys(LANGUAGES).map((lang) => ({
       params: { lang: lang as Language, general: path },
       props: { target: path },
-    })),
+    }))
   );
 }
 
@@ -38,7 +38,8 @@ const entryContents = await Promise.all(
 );
 
 entryContents.sort(
-  (a, b) => a.remarkPluginFrontmatter?.order - b.remarkPluginFrontmatter?.order,
+  (a, b) =>
+    a.remarkPluginFrontmatter?.order - b.remarkPluginFrontmatter?.order,
 );
 
 const slugs = collection.map((entry) => entry.id.split(".")[0]);
@@ -57,24 +58,26 @@ const baseHeadProps: BaseHeadProps = {
 <BaseSite {...baseHeadProps}>
   {
     entryContents.map((entry, i) => {
-      return (
-        <TabContainer
-          id={removeLangFromContentSlug(slugs[i])}
-          title={entry.remarkPluginFrontmatter.title}
-          size="large"
-          displayShowMore={hide[target]}
-        >
-          {entry.remarkPluginFrontmatter.imagePath && (
+    return (
+      <TabContainer
+        id={removeLangFromContentSlug(slugs[i])}
+        title={entry.remarkPluginFrontmatter.title}
+        size="large"
+        displayShowMore={hide[target]}
+      >
+        {
+          entry.remarkPluginFrontmatter.imagePath && (
             <div class={s.tabContentImage}>
               <DynamicPicture
                 src={entry.remarkPluginFrontmatter.imagePath}
                 alt={entry.remarkPluginFrontmatter.title}
               />
             </div>
-          )}
-          <entry.Content />
-        </TabContainer>
-      );
-    })
+          )
+        }
+        <entry.Content />
+      </TabContainer>
+    );
+  })
   }
 </BaseSite>

@@ -20,7 +20,7 @@ const {
 ---
 
 <astro-tab-container
-  id={id}
+  {id}
   data-display-show-more={`${displayShowMore}`}
   class={s.tabContainer}
 >
@@ -30,8 +30,7 @@ const {
       size == "small" ? s.tabTitle_small : s.tabTitle_large,
     ]}
   >
-    {icon && <Icon name={icon} />}
-    {title}
+    {icon && <Icon name={icon} />} {title}
   </h3>
 
   <div
@@ -84,8 +83,9 @@ const {
       showButtonEl?.addEventListener("click", () => {
         displayNum += SHOW_SPAN;
         showContent(listItemEls, displayNum);
-        if (maxItems && displayNum >= maxItems)
+        if (maxItems && displayNum >= maxItems) {
           showButtonEl.style.display = "none";
+        }
       });
     }
   }
