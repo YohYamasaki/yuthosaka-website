@@ -4,7 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import solidJs from "@astrojs/solid-js";
-// import compressor from "astro-compressor";
+import vercelStatic from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +16,11 @@ export default defineConfig({
     format: "directory",
   },
   output: "static",
+  adapter: vercelStatic({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   redirects: {
     "/": "/en",
   },
